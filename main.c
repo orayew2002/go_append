@@ -16,6 +16,9 @@ void SliceInit(Slice *vec) {
 
 Slice append(Slice slice, short element) {
   if (slice.cap <= slice.len) {
+
+    // Если вместимость равна 0, ставим 2, иначе удваиваем вместимость.
+    // В Go своя более сложная логика увеличения capacity для оптимизации.
     slice.cap = (slice.cap == 0) ? 2 : slice.cap * 2;
 
     short *new = malloc(slice.cap * sizeof(short));
